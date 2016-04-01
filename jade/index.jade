@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    title tech-diary
+    link(rel='stylesheet', href="./css/style.css")
+  body
+    header
+      h1 tech-diary
+    table(cellspacing="0px")
+      tbody
+        - var months = ["December", "November", "October", "September", "August", "July", "June", "May", "April", "March", "February", "Janaury"]
+        each month in months
+          tr
+            td.month.tinfo= month
+            - for (var i = 0; i < 31; i++)
+              td
+        tr#day
+          td
+          - for(var i = 1; i < 32; i++)
+            td.day.tinfo= i

@@ -1,0 +1,45 @@
+body{
+  background: #F3F3F3;
+}
+
+.month{
+  color: #444444;
+  width: 1%;
+  height: 40px;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-color: #6D6D6D;
+}
+
+#day td:first-child{
+  border-style: none;
+}
+#day td{
+  color: #444444;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-color: #6D6D6D;
+  padding-top: 10px;
+  text-align: center;
+  width: 20px;
+}
+
+table :not(.tinfo){
+  border-color: #CCCCCC;
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+}
+
+table td:not(.tinfo):hover{
+  box-shadow: 0 0 10px #ccc;
+  transition: 0.3s;
+}
+
+table{
+  margin: 56px;
+  width: 1080px;
+}
+
+body > table > tbody > tr:nth-child(10) > td:nth-child(2){
+  background: red;
+}
