@@ -1,0 +1,5 @@
+body > table > tbody > tr:nth-child(10) > td:nth-child(30){background: red}
+body > table > tbody > tr:nth-child(10) > td:nth-child(31){background: red}
+body > table > tbody > tr:nth-child(9) > td:nth-child(2){background: red}
+body > table > tbody > tr:nth-child(10) > td:nth-child(32){background: red}
+body > table > tbody > tr:nth-child(9) > td:nth-child(3){background: red}

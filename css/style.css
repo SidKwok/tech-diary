@@ -40,6 +40,6 @@ table{
   width: 1080px;
 }
 
-body > table > tbody > tr:nth-child(10) > td:nth-child(2){
+/*body > table > tbody > tr:nth-child(10) > td:nth-child(2){
   background: red;
-}
+}*/
