@@ -31,7 +31,7 @@ table :not(.tinfo){
 }
 
 table td:not(.tinfo):hover{
-  box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px rgba(150,150,150,0.3);
   transition: 0.3s;
 }
 
@@ -39,7 +39,3 @@ table{
   margin: 56px;
   width: 1080px;
 }
-
-/*body > table > tbody > tr:nth-child(10) > td:nth-child(2){
-  background: red;
-}*/

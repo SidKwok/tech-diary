@@ -5,6 +5,8 @@ function writeCss(w){
   var css = "";
   var posts = {};
   var date = [];
+  // var lightcolor = [162,212,171],
+  //     deepcolor = [62,172,168];
   w.forEach(function(item){
 
     if(date.indexOf(item.date) == -1){
@@ -28,7 +30,7 @@ function writeCss(w){
            (13 - month) +
            ") > td:nth-child(" +
            (1 + day) + ")" +
-           "{background: red}\n";
+           "{background-color: rgba(62,172,168," + posts[item].size / 5000 + ");}\n";
   });
 
   fs.writeFile( __dirname + '/css/table.css', css, function(err){

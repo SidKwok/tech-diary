@@ -11,12 +11,17 @@ html(lang="en")
     table(cellspacing="0px")
       tbody
         - var months = ["December", "November", "October", "September", "August", "July", "June", "May", "April", "March", "February", "Janaury"]
+        - var count = 12
+        - var string
         each month in months
           tr
             td.month.tinfo= month
             - for (var i = 0; i < 31; i++)
-              td
+              - string = count + "-" + (i+1)
+              td(data-date= string)
+            - count = count - 1
         tr#day
           td
           - for(var i = 1; i < 32; i++)
             td.day.tinfo= i
+    script(src="./js/test.js")
