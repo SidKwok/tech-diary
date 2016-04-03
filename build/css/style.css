@@ -47,4 +47,11 @@ table{
   height:56px;
   border-radius: 8px;
   opacity: 0.5;
+  word-wrap: break-word;
+  font-size: 12px;
+  padding: 8px;
+  text-align: center;
+  position: fixed;
+  display: none;
+  transition: 0.5s;
 }

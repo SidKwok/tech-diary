@@ -1,7 +1,6 @@
 var data = require("./data")();
 var $ = require('jquery');
 
-// var table = document.querySelector("table");
 var month, day;
 var dates = [];
 var tmp;
@@ -16,20 +15,22 @@ for(var i in data){
 }
 // console.log(dates);
 
-// table.addEventListener('mouseover', function(event){
-//   var date = event.target.dataset.date;
-//   if(dates.indexOf(date) !== -1){
-//     console.log(posts[date].title);
-//   }
-// });
 $("table").bind({
   mouseover: function(event){
     if(dates.indexOf(event.target.dataset.date) !== -1){
-      $("#tip").html(posts[event.target.dataset.date].title);
+      var top = $(event.target).offset().top;
+      var left = $(event.target).offset().left;
+      $("#tip").css("display", "block");
+      $("#tip").offset({top: top - 100, left: left});
+      posts[event.target.dataset.date].title.forEach(function(item){
+        $("#tip").append(item);
+        $("#tip").append("\n");
+      });
     }
   },
   mouseout: function(event){
     if(dates.indexOf(event.target.dataset.date) !== -1){
+      $("#tip").css("display", "none");
       $("#tip").html("");
     }
   }
