@@ -25,8 +25,8 @@ body{
 }
 
 table :not(.tinfo){
-  border-color: #CCCCCC;
-  border-style: solid;
+  /*border-color: #CCCCCC;
+  border-style: solid;*/
   border-width: 1px 1px 0 0;
 }
 
@@ -38,4 +38,13 @@ table td:not(.tinfo):hover{
 table{
   margin: 56px;
   width: 1080px;
+}
+
+#tip{
+  background: black;
+  color: white;
+  width:86px;
+  height:56px;
+  border-radius: 8px;
+  opacity: 0.5;
 }
