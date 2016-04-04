@@ -56,6 +56,6 @@ $("table").bind({
     if(day.length == 1){
       day = "0" + day;
     }
-    window.location = "_post/" +  title + "_2016-" + month + "-" + day + ".html";
+    window.location = "post/" +  title + "_2016-" + month + "-" + day + ".html";
   }
 });

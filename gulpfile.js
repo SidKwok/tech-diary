@@ -42,7 +42,7 @@ gulp.task('posts', function() {
     .pipe(layout({
       layout: './app/jade/layout.jade'
     }))
-    .pipe(gulp.dest('./build/_post'));
+    .pipe(gulp.dest('./build/post'));
 });
 
 gulp.task('createcss', function() {
