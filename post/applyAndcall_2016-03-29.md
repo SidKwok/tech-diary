@@ -1,5 +1,5 @@
-#apply与call的用法详解
-##2016.3.29
+# apply与call的用法详解
+## 2016.3.29
 
 搞了好久我都没有弄明白wtf is `apply` and `call`。现在总算有点眉目了。
 

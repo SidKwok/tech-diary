@@ -49,6 +49,7 @@
 
 	var month, day;
 	var dates = [];
+	var rawdates = [];
 	var tmp;
 	var posts = {};
 
@@ -61,24 +62,47 @@
 	}
 	// console.log(dates);
 
+
+
 	$("table").bind({
 	  mouseover: function(event){
 	    if(dates.indexOf(event.target.dataset.date) !== -1){
 	      var top = $(event.target).offset().top;
 	      var left = $(event.target).offset().left;
+	      var string;
+	      var href;
 	      $("#tip").css("display", "block");
-	      $("#tip").offset({top: top - 100, left: left});
+	      $("#tip").offset({top: top - 100, left: left - 40});
 	      posts[event.target.dataset.date].title.forEach(function(item){
-	        $("#tip").append(item);
-	        $("#tip").append("\n");
+	        $("#tip .title").append(item);
+	        $("#tip .title").append("\n");
 	      });
+	      string = event.target.dataset.date.split("-").join("月") + "日";
+	      $("#tip p").append(string);
+
+	      // add box-shadow
+	      $(event.target).css("box-shadow", "#5A5050 0px 0px 10px 0px");
 	    }
 	  },
 	  mouseout: function(event){
 	    if(dates.indexOf(event.target.dataset.date) !== -1){
+	      $(event.target).css("box-shadow", "none");
 	      $("#tip").css("display", "none");
-	      $("#tip").html("");
+	      $("#tip .title").html("");
+	      $("#tip p").html("");
 	    }
+	  },
+	  click: function(event){
+	    month = event.target.dataset.date.split("-")[0];
+	    day   = event.target.dataset.date.split("-")[1];
+	    var title = posts[event.target.dataset.date].title[0];
+	    if(month.length == 1){
+	      month = "0" + month;
+	    }
+	    if(day.length == 1){
+	      day = "0" + day;
+	    }
+	    window.location = "_post/" +  title + "_2016-" + month + "-" + day + ".html";
 	  }
 	});
 
@@ -87,7 +111,7 @@
 /* 1 */
 /***/ function(module, exports) {
 
-	function generateData(){return {"2016-04-03":{"title":["aboutWebpack"],"size":1623},"2016-03-29":{"title":["applyAndcall","jsChain"],"size":2668},"2016-03-30":{"title":["gulpAndBS"],"size":1951},"2016-04-01":{"title":["jsInherit","prototypeAndconstructor"],"size":4528},"2016-03-31":{"title":["jsModule"],"size":2337},"2016-04-02":{"title":["jsonpAndAjax"],"size":2655}};};module.exports=generateData;
+	function generateData(){return {"2016-04-03":{"title":["aboutWebpack"],"size":1623},"2016-03-29":{"title":["applyAndcall","jsChain"],"size":2672},"2016-03-30":{"title":["gulpAndBS"],"size":1953},"2016-04-01":{"title":["jsInherit","prototypeAndconstructor"],"size":4532},"2016-03-31":{"title":["jsModule"],"size":2337},"2016-04-02":{"title":["jsonpAndAjax"],"size":2657}};};module.exports=generateData;
 
 /***/ },
 /* 2 */

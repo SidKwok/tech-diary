@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><title></title><body><h1>heyeyhey</h1><h1 id="gulp-browsersync-">Gulp+BrowserSync优化工作流</h1>
+<h2 id="2016-3-30">2016.3.30</h2>
+<p>最近在重新弄自己的博客，以前用的是别人的主题通过Jekll构建的。作为一名前端开发者总感觉酱紫怪怪的，所以我就把那个博客删了，重新做一个喽～</p>
+<p>静态网页嘛，所以总要涉及不断的改变样式与布局，那么就要按好多好多的F5，这样一点都不够Geek。</p>
+<p>所以就来个无刷新的吧。</p>
+<p>最近在学Node.js，那就把Gulp当练手吧。</p>
+<p>Node.js的安装和配置就不说了，直接安装Gulp：</p>
+<pre><code>npm install gulp -g
+</code></pre><p>然后再安装一个神器BrowserSync，它的神不仅仅在于不用手动点击F5，后面慢慢研究：</p>
+<pre><code>npm install browser-sync -g
+</code></pre><p>我还得顺便学一把sass，so:</p>
+<pre><code>npm install gulp-sass --save=dev
+</code></pre><p>同样地，sass的安装和配置就不缩了，反正自己看。</p>
+<p>接着，写一个<code>gulpfile.js</code>:</p>
+<pre><code>var gulp        = require(&#39;gulp&#39;);
+var browserSync = require(&#39;browser-sync&#39;).create();
+var sass        = require(&#39;gulp-sass&#39;);
+var reload      = browserSync.reload;
+
+gulp.task(&#39;serve&#39;, [&#39;sass&#39;], function() {
+
+    browserSync.init({
+        server: &quot;./&quot;
+    });
+
+    // 监视sass中的所有.scss文件，有改动的话就执行任务sass
+    gulp.watch(&quot;sass/*.scss&quot;, [&#39;sass&#39;]);
+
+    // 监视根目录的.html文件，有改动就reload browsersync
+    gulp.watch(&quot;./*.html&quot;).on(&#39;change&#39;, reload);
+});
+
+gulp.task(&#39;sass&#39;, function() {
+    return gulp.src(&quot;sass/style.scss&quot;)  // 对style.scss进行编译
+        // 异步编译，编译错误的话就停止编译到css中，就是跳过下一个操作，直接reload
+        .pipe(sass().on(&#39;error&#39;, sass.logError))
+        // 编译到css中
+        .pipe(gulp.dest(&quot;css&quot;))
+        // reload
+        .pipe(reload({stream: true}));
+});
+
+// 默认的task， 直接gulp
+gulp.task(&#39;default&#39;, [&#39;serve&#39;]);
+</code></pre><p>对的，就是这样就好了，后面有更高级的操作再说，先完成我叼炸天的主页。</p>
+</body></html>

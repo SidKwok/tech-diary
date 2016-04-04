@@ -24,7 +24,7 @@ function writeCss(w){
   js = "function generateData(){return " + JSON.stringify(posts) + ";};";
   js += "module.exports=generateData;";
   // console.log(js);
-  fs.writeFile('./data.js', js, function(err){
+  fs.writeFile('./app/data.js', js, function(err){
     if(err){
       console.error(err);
     }
@@ -41,7 +41,7 @@ function writeCss(w){
            "{background-color: rgba(62,172,168," + posts[item].size / 5000 + ");}\n";
   });
 
-  fs.writeFile( '../build/css/table.css', css, function(err){
+  fs.writeFile( './build/css/table.css', css, function(err){
     if (err){
       console.error(err);
     }
@@ -49,7 +49,7 @@ function writeCss(w){
 }
 
 function createcss(){
-  fs.readdir('../post', function(err, files){
+  fs.readdir('./post', function(err, files){
     if (err){
       console.error(err);
     }
@@ -62,7 +62,7 @@ function createcss(){
     files.forEach(function(item){
       //sorry for mac
       if(item !== ".DS_Store"){
-        path = '../post/' + item;
+        path = './post/' + item;
         fs.stat(path, function(err, stats){
           wrap.push({
             title: item.split("_")[0],
@@ -83,6 +83,6 @@ function createcss(){
   });
 }
 
-createcss();
+// createcss();
 
 module.exports = createcss;

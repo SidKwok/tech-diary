@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><title></title><body><h1>heyeyhey</h1><h1 id="webpack-">webpack入门</h1>
+<h2 id="2016-04-03">2016.04.03</h2>
+<p>今天被赶出实验室了，心情异常郁闷，技术博客也提不起精神来写了。不过我的tech-diary也算叫做解决了好几个问题，也还好吧。</p>
+<p>说说webpack。我觉得（只是个人觉得，感觉应该还有很多地方要补充）webpack就是将所有能打包成一个的东西都打包成一个，那么这样子的话模块化的在浏览器端的实现就显得异常地和谐。将所有模块分开写，然后最后webpack一下讲所有东西pack成一个，虽然不利于别人去阅读，但是很大程度上减少了页面加载时间，而且还不用担心全局变量污染的问题。虽然我对模块化编程的理解还不够，但是目前感觉还是挺方便的。</p>
+<p>首先要写一个webpack.config.js：</p>
+<pre><code>var path = require(&#39;path&#39;);
+var ROOT_PATH = path.resolve(__dirname);
+var APP_PATH = path.resolve(ROOT_PATH, &#39;app&#39;);
+var BUILD_PATH = path.resolve(ROOT_PATH, &#39;build/js&#39;);
+
+module.exports = {
+  entry: APP_PATH,
+  output: {
+    path: BUILD_PATH,
+    filename: &#39;bundle.js&#39;
+  },
+};
+</code></pre><p>这是最基本的，还有plugins、loaders和tools，这些东西构成了webpack各种屌炸天的功能，但是我还没有开始使用，所以后面再聊。</p>
+<p>结合gulp进行自动化：</p>
+<pre><code>gulp.task(&#39;webpack&#39;, function(){
+  return gulp.src(&quot;app/index.js&quot;)
+      .pipe(webpack(require(&quot;./webpack.config.js&quot;)))
+      .pipe(gulp.dest(&quot;./build/js/&quot;))
+});
+</code></pre><p>需要安装一个webpack-stream的插件，那么这样gulp一下就可以自动打包了，非常的方便。</p>
+<p>据说结合着react来吃用会更爽，这要后面才知道。</p>
+</body></html>

@@ -1,6 +1,10 @@
 body{
   background: #F3F3F3;
 }
+header{
+  text-align: center;
+  margin-top: 2%;
+}
 
 .month{
   color: #444444;
@@ -25,18 +29,16 @@ body{
 }
 
 table :not(.tinfo){
-  /*border-color: #CCCCCC;
-  border-style: solid;*/
   border-width: 1px 1px 0 0;
 }
 
-table td:not(.tinfo):hover{
-  box-shadow: 0 0 10px rgba(150,150,150,0.3);
-  transition: 0.3s;
-}
+/*table td:not(.tinfo):hover{
+  box-shadow: #5A5050 0px 0px 10px 0px;
+  transition: 1.5s;
+}*/
 
 table{
-  margin: 56px;
+  margin: 36px auto;
   width: 1080px;
 }
 
@@ -49,7 +51,7 @@ table{
   opacity: 0.5;
   word-wrap: break-word;
   font-size: 12px;
-  padding: 8px;
+  padding: 16px;
   text-align: center;
   position: fixed;
   display: none;

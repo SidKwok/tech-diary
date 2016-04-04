@@ -2,6 +2,10 @@ var gulp        = require('gulp');
 var browserSync = require('browser-sync').create();
 var jade        = require('gulp-jade');
 var webpack     = require('webpack-stream');
+var markdown    = require('gulp-markdown');
+var frontMatter = require('gulp-front-matter');
+var layout      = require('gulp-layout');
+var createcss   = require('./app/createcss');
 var reload      = browserSync.reload;
 
 gulp.task('serve', ['jade'], function() {
@@ -31,4 +35,20 @@ gulp.task('webpack', function(){
       .pipe(reload({stream: true}));
 });
 
+gulp.task('posts', function() {
+  return gulp.src('post/*.md')
+    .pipe(markdown())
+    .pipe(layout({
+      layout: './app/jade/layout.jade'
+    }))
+    .pipe(gulp.dest('./build/_post'));
+});
+
+gulp.task('createcss', function() {
+  createcss();
+});
+
+
 gulp.task('default', ['serve']);
+
+gulp.task('build', ['createcss', 'jade', 'webpack', 'posts']);
