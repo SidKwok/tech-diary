@@ -6,6 +6,7 @@ var markdown    = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
 var layout      = require('gulp-layout');
 var createcss   = require('./app/createcss');
+var ghPages     = require('gulp-gh-pages');
 var reload      = browserSync.reload;
 
 gulp.task('serve', ['jade'], function() {
@@ -46,6 +47,11 @@ gulp.task('posts', function() {
 
 gulp.task('createcss', function() {
   createcss();
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('./build/**/*')
+    .pipe(ghPages());
 });
 
 
