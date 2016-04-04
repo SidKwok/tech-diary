@@ -25,4 +25,4 @@ var person2 = new Person();
 console.log(Person.prototype.constructor); // [Function: Animal]
 console.log(person2.constructor); // [Function: Animal]
 </code></pre><p>这里有必要解释一下，免得自己又忘记了。前面用<code>Person</code>创建了一个新对象<code>person1</code>，所以<code>person1</code>的<code>constructor</code>指向<code>Person</code>。然后，<code>Person</code>的原型被<code>Animal</code>实例化了，其实也就相当于<code>Animal</code>构造了<code>Peple</code>，那么<code>People</code>构造了<code>person2</code>，那么<code>person2</code>的<code>constructor</code>就是<code>Animal</code>了。</p>
-</div><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
