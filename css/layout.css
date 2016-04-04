@@ -1,16 +1,52 @@
 .content{
-  width: 80%;
-  margin: 0 auto;
+  width: 60%;
+  margin: 5% auto;
   font-weight: lighter;
   line-height: 1.7;
   /*font-family: Consolas, Monaco, 'Andale Mono', monospace;*/
 }
 .content h1{
   font-size: 32px;
-  font-weight: normal;
+  font-weight: lighter;
+  font-family: Lato,"Microsoft YaHei",sans-serif;
+}
+.content h2{
+  font-weight: lighter;
+}
+.content h3{
+  font-size: 20px;
+}
+.content p{
+  text-indent: 2em;
+  font-size: 18px;
+}
+.content a{
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width:auto;
+  height: 24px;
+  padding: 0 4px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 4px;
+  text-indent: 0;
+  text-align: center;
 }
 .content pre{
-  border: 
+  padding: 2px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E5E5E5;
+  border-radius: 8px;
+  transition: 1.5s;
+}
+.content pre:hover{
+  box-shadow: #5A5050 0px 0px 10px 0px;
 }
 .content code{
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
