@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"></head><title></title><body><h1>heyeyhey</h1><h1 id="js-">js链式调用</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="js-">js链式调用</h1>
 <h2 id="2016-3-29">2016.3.29</h2>
 <p>js的链式调用简单得像abc那样。简单一句话就是，在每个方法的最后返回<code>this</code>,那么对象调用完其方法之后自然就会返回自己，那么显然就可以继续调用其他的方法。需要留意的是只有定义在原型对象上面的方法才可以，就是组合模式那点东西嘛。</p>
 <p>talk is cheap</p>
@@ -40,4 +40,4 @@ sport
     }
 }
 </code></pre><p>链式调用嘛，所以很多时候是希望一个函数一个函数地接着调用（或者有其他的意图，再聊）。在这里，将所有函数压到一个数组里面，然后一个个进行处理，在这里可以一瞥<code>apply</code>那风骚的用法。感觉可以再优化一下，我思考思考。</p>
-</body></html>
+</div><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

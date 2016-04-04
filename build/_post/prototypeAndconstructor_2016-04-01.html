@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"></head><title></title><body><h1>heyeyhey</h1><h1 id="prototype-constructor-">prototype与constructor的解释</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="prototype-constructor-">prototype与constructor的解释</h1>
 <h2 id="2016-04-01">2016.04.01</h2>
 <p>在进入继承之前先弄懂<code>prototype</code>和<code>constructor</code>。官方解释，<code>function</code>定义的对象会有一个<code>prototype</code>的属性，这个属性是指向一个原型对象（也叫<code>prototype</code>）的一个指针。如果将一个对象的实例new到一个对象的<code>prototyp</code>e属性上，就相当于该对象的<code>prototype</code>被那个对象的实例改写了，那么就实现了继承，这个后面再说。</p>
 <pre><code>function Animal(){}
@@ -25,4 +25,4 @@ var person2 = new Person();
 console.log(Person.prototype.constructor); // [Function: Animal]
 console.log(person2.constructor); // [Function: Animal]
 </code></pre><p>这里有必要解释一下，免得自己又忘记了。前面用<code>Person</code>创建了一个新对象<code>person1</code>，所以<code>person1</code>的<code>constructor</code>指向<code>Person</code>。然后，<code>Person</code>的原型被<code>Animal</code>实例化了，其实也就相当于<code>Animal</code>构造了<code>Peple</code>，那么<code>People</code>构造了<code>person2</code>，那么<code>person2</code>的<code>constructor</code>就是<code>Animal</code>了。</p>
-</body></html>
+</div><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

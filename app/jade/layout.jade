@@ -2,7 +2,12 @@ doctype html
 html
   head
     meta(charset='utf-8')
-   title= title
+    link(rel='stylesheet', href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css")
+    link(rel='stylesheet', href="../css/layout.css")
+
   body
-    h1 heyeyhey
-    != contents
+    div.content
+      != contents
+    script(src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js")
+    script.
+      hljs.initHighlightingOnLoad();

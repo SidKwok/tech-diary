@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"></head><title></title><body><h1>heyeyhey</h1><h1 id="jsonp-ajax">JSONP和Ajax</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="jsonp-ajax">JSONP和Ajax</h1>
 <h2 id="2016-04-02">2016.04.02</h2>
 <p>Let&#39;s talk about JSONP and Ajax。</p>
 <p>首先说Ajax。Ajax的全名是异步的javascript和XML，初期是用来异步传输XML的，但是现在通常是用来传输json数据的（起码我是这么干的）。Ajax的核心是XMLHttpRequest对象（IE中是ActiveXObject，其中有的属性是responseText、responseXML、status和statusText。一般用status来确定是否成功。status包含的是http状态码，所以是大于200且小于302，或者是等于304（传回来的数据与客户端的数据一致）。</p>
@@ -42,4 +42,4 @@ xhr.send(null); // if post, need data
 </code></pre><p>再说JSONP。由于跨域安全策略，所以Ajax是没有办法获取跨域资源的（其实我觉得就是IE不可以，其他浏览器可以通过修改open里面的url来实现跨域资源访问，也就是CORS）。但是JSONP可以。因为JSONP是通过动态创建script标签来调用跨域服务器生成的文件。具体做法是，将script的src属性写相应url，添加所需要的callback，然后服务器根据传过来的callback生成相应的callback函数，将数据放进去，all is done。</p>
 <p>它和Ajax有什么不同？完全就不同好吗，Ajax是通过xhr来与同域服务器通信的，JSONP是通过script标签，要多不同有多不同。</p>
 <p><a href="http://blog.csdn.net/superhosts/article/details/9057301">参考文章</a></p>
-</body></html>
+</div><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

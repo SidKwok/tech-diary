@@ -1,0 +1,17 @@
+.content{
+  width: 80%;
+  margin: 0 auto;
+  font-weight: lighter;
+  line-height: 1.7;
+  /*font-family: Consolas, Monaco, 'Andale Mono', monospace;*/
+}
+.content h1{
+  font-size: 32px;
+  font-weight: normal;
+}
+.content pre{
+  border: 
+}
+.content code{
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
