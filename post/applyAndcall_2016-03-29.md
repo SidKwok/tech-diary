@@ -20,7 +20,7 @@ console.log(sid.name);  // sid
 console.log(sid.age);   // 21
 console.log(sid.hobby); // sport
 
-// 解释一下，首先创建了一个构造函数。后来用了apply将sid的this传到了构造函数中，再看，这个时候回到doSth。在doSth中对this进行了赋值，而此时的this是sid的，所有灾后面sid也就有了那几个属性
+// 解释一下，首先创建了一个构造函数。后来用了apply将sid的this传到了构造函数中，再看，这个时候回到doSth。在doSth中对this进行了赋值，而此时的this是sid的，所以在后面sid也就有了那几个属性
 
 var newArg = Array.prototype.call(arguments); //让伪数组arguements也具有数组的各种方法
 ```
