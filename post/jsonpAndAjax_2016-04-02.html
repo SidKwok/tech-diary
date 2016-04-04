@@ -42,4 +42,4 @@ xhr.send(null); // if post, need data
 </code></pre><p>再说JSONP。由于跨域安全策略，所以Ajax是没有办法获取跨域资源的（其实我觉得就是IE不可以，其他浏览器可以通过修改<code>open</code>里面的<code>url</code>来实现跨域资源访问，也就是CORS）。但是JSONP可以。因为JSONP是通过动态创建<code>script</code>标签来调用跨域服务器生成的文件。具体做法是，将<code>script</code>的<code>src</code>属性写相应<code>url</code>，添加所需要的<code>callback</code>，然后服务器根据传过来的<code>callback</code>生成相应的<code>callback</code>函数，将数据放进去，all is done。</p>
 <p>它和Ajax有什么不同？完全就不同好吗，Ajax是通过xhr来与同域服务器通信的，JSONP是通过script标签，要多不同有多不同。</p>
 <p><a href="http://blog.csdn.net/superhosts/article/details/9057301">参考文章</a></p>
-</div><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

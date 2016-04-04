@@ -60,3 +60,14 @@ table{
   display: none;
   transition: 0.5s;
 }
+
+footer{
+  width: 30%;
+  margin: 16px auto;
+  text-align: center;
+  color: #444444;
+}
+
+footer a{
+  color:#444444;
+}
