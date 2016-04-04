@@ -5,6 +5,9 @@ header{
   text-align: center;
   margin-top: 2%;
 }
+header h1{
+  font-weight: lighter;
+}
 
 .month{
   color: #444444;
