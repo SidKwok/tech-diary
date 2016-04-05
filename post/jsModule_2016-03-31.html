@@ -4,7 +4,7 @@
 <hr>
 <h3 id="-">工厂模式</h3>
 <p>用函数来封装以特定借口创建对象的细节,可以创建多个相似的对象，但是不能知道对象的类型。</p>
-<pre><code>function createPerson(name, age, sex){
+<pre><code class="lang-javascript">function createPerson(name, age, sex){
   var o = new Object();
   o.name = name;
   o.age = age;
@@ -17,10 +17,11 @@
 
 var person1 = createPerson(&quot;sid&quot;, 21, &quot;male&quot;);
 var person2 = createPerson(&quot;mingen&quot;, 20, &quot;female&quot;);
-</code></pre><hr>
+</code></pre>
+<hr>
 <h3 id="-">构造函数模式</h3>
 <p>创建类似于Array和Object酱紫的构造函数，明显要new操作。</p>
-<pre><code>function Person(name, age, sex){
+<pre><code class="lang-javascript">function Person(name, age, sex){
   this.name = name;
   this.age = age;
   this.sex = sex;
@@ -31,10 +32,11 @@ var person2 = createPerson(&quot;mingen&quot;, 20, &quot;female&quot;);
 
 var person1 = new Person(&quot;sid&quot;, 21, &quot;male&quot;);
 var person2 = new Person(&quot;mingen&quot;, 20, &quot;female&quot;);
-</code></pre><hr>
+</code></pre>
+<hr>
 <h3 id="-">原型模式</h3>
 <p>实例公用一套方法与属性。</p>
-<pre><code>function Person(){};
+<pre><code class="lang-javascript">function Person(){};
 Person.prototype.name = &quot;sid&quot;;
 Person.prototype.age  = 21;
 Person.prototype.sex  = &quot;male&quot;;
@@ -43,10 +45,11 @@ Person.prototype.sayName = function(){
 }
 
 var person1 = new Person();
-</code></pre><hr>
+</code></pre>
+<hr>
 <h3 id="-">组合使用构造函数模式与原型模式</h3>
 <p>这种方法最多人用。因为在创建新实例的时候，必定是有一部分属性是指能够独自占有的，而方法应该是大多数实例都可以共享的，所以个人认为这种方法是最合理的。</p>
-<pre><code>function Person(name, age, sex){
+<pre><code class="lang-javascript">function Person(name, age, sex){
   this.name = name;
   this.age = age;
   this.sex = sex;
@@ -60,10 +63,11 @@ var person2 = new Person(&quot;mingen&quot;, 20, &quot;female&quot;);
 
 person1.sayName(); // sid
 person2.sayName(); // mingen
-</code></pre><hr>
+</code></pre>
+<hr>
 <h3 id="-">动态原型模式</h3>
 <p>这种方法是上面的变形，区别是这种模式把所有东西都封装在一个变量里面，我最喜欢这个模式，感觉分离的比较好。</p>
-<pre><code>function Person(name, age, sex){
+<pre><code class="lang-javascript">function Person(name, age, sex){
   this.name = name;
   this.age = age;
   this.sex = sex;
@@ -74,5 +78,6 @@ person2.sayName(); // mingen
     }
   }
 }
-</code></pre><p>这几种模式应该就足够日常开发使用了，后面再讨论继承的几种方法。</p>
+</code></pre>
+<p>这几种模式应该就足够日常开发使用了，后面再讨论继承的几种方法。</p>
 </div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="css-flex-">CSS flex布局</h1>
+<h2 id="2016-04-05">2016.04.05</h2>
+<p>之前一直有听说flex布局，但是因为没有需要用到它的时候（因为一直都在用Bootstrap，得改一下这个习惯），所以就一直都没有去学。今天好好总结一下。</p>
+<p>flex布局可以想象为一个容器包含着若干个子项目，而容器是由主轴（main axis）和交叉轴（cross axis）的（即横纵轴），而项目的width就是main size。有了这点基础就开始展开各种属性了。</p>
+<h3 id="-">定义</h3>
+<pre><code class="lang-css">box{
+  display: flex;
+  || display: -webkit; /* webkit内核浏览器 */
+  || display: inline-flex; /* 內联元素也可以用flex布局 */
+}
+</code></pre>
+<p>子项目的<code>float</code>、<code>center</code>和<code>vertical-align</code>会失效。而子项目是不需要设置<code>display: flex</code>的，除非其也要成为其他子项目的容器。</p>
+<h3 id="-">容器属性</h3>
+<pre><code>flex-direction  // 决定主轴的方向(main or cross)
+flex-wrap       // 如果在一条线上排不下，如何换行
+flex-flow       // 是flex-direction和flex-wrap的间写
+justify-content // 定义了项目在主轴上的排列方式(main axis)
+align-items     // 定义了项目在交叉轴上的排列方式(corss axis)
+align-content   // 定义了多根轴线的对齐方式，如果只有一根轴线，则该属性不起作用
+</code></pre><p>flex-direction</p>
+<pre><code>row(默认)       // 主轴为水平方向，起点在左端
+row-reverse    // 主轴为水平方向，起点在右端
+column         // 主轴为垂直方向，起点在上沿
+column-reverse // 主轴为垂直方向，起点在下沿
+</code></pre><p>flex-wrap</p>
+<pre><code>no-wrap(默认) // 不换行，如果产生需要换行的状况，子项目会压缩高度或宽度
+wrap         // 换行，第一行在上方
+wrap-reverse // 换行，第一行在下方
+</code></pre><p>flex-flow</p>
+<pre><code>row nowrap(默认) //水平排列，不换行
+</code></pre><p>justify-content</p>
+<pre><code>flex-start(默认) // 左对齐
+flex-end        // 右对齐
+center          // 居中
+space-between   // 两端对齐，项目之间间隔相等
+space-around    // 两个项目两次的间隔相等，项目之间的间隙会刚好比项目于边框之间的间隙大一倍
+</code></pre><p>align-items</p>
+<pre><code>flex-start   // 起点对齐
+flex-end     // 起点对齐
+center       // 居中对齐
+baseline     // 项目的第一行文字堆砌
+stretch(默认) // 如果项目未设置高度或高度为auto，将占满整个容器的高度
+</code></pre><p>align-content</p>
+<pre><code>flex-start    // 与交叉轴起点对齐
+flex-end      // 与交叉轴终点对齐
+center        // 与交叉轴中点对齐
+space-between // 与交叉轴两端对齐，间隔平均分布
+space-around  // 每根轴线两侧的间隙都相等
+stretch(默认)  // 高度铺满
+</code></pre><h3 id="-">项目属性</h3>
+<pre><code>order       // 定义项目的排列顺序，数值越小，排列越靠前，默认0
+flex-grow   // 定义项目的放大比例，默认0，即如果有剩余空间也不放大
+flex-shrink // 定义项目的缩小比例，默认1，即如果空间不足项目将缩小
+flex-basis  // 定义了在分配多余空间之前，项目占据的主轴空间(main size)，默认auto
+flex        // 前三者的缩写，默认 0 1 auto，后两个属性可选
+align-self  // 允许单个项目与其他项目有不同的排列方式，可覆盖align-items属性。默认auto，表示继承父元素            的align属性，没有父元素，则等同于stretch。
+</code></pre><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">Flex 布局教程：实例篇</a></p>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

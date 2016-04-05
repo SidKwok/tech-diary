@@ -3,7 +3,7 @@
 <p>搞了好久我都没有弄明白wtf is <code>apply</code> and <code>call</code>。现在总算有点眉目了。</p>
 <p>其实一言以蔽之，<code>apply</code>和<code>call</code>是改变某个对象的<code>this</code>的。怎么改变？</p>
 <p>具体用法：</p>
-<pre><code>function doSth(name, age, hobby){
+<pre><code class="lang-javascript">function doSth(name, age, hobby){
   this.name = name;
   this.age = age;
   this.hobby = hobby;
@@ -19,7 +19,8 @@ console.log(sid.hobby); // sport
 // 解释一下，首先创建了一个构造函数。后来用了apply将sid的this传到了构造函数中，再看，这个时候回到doSth。在doSth中对this进行了赋值，而此时的this是sid的，所以在后面sid也就有了那几个属性
 
 var newArg = Array.prototype.call(arguments); //让伪数组arguements也具有数组的各种方法
-</code></pre><p>就是酱。</p>
+</code></pre>
+<p>就是酱。</p>
 <p>第一个参数是某个对象的上下文，第二个参数是参数列表。</p>
 <p><code>apply</code>和<code>call</code>唯一的区别就是<code>call</code>的第二个参数是所有的参数，<code>apply</code>的是一个参数数组。</p>
 <p>还有各种风骚的方法之后再更新，反正自己的博客自己看，不急。</p>
