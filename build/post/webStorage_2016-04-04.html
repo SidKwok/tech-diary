@@ -4,9 +4,10 @@
 <p>好了，进正题了，今天深入了解一下浏览器的各种存储方式，之前一直都没有概念，今天来总结一下。</p>
 <h3 id="cookie">Cookie</h3>
 <p>Cookie是用来存储客户端数据的，是存在于用户硬盘中的一个文件，每次浏览器发送请求都会将Cookie装进消息头中，所以这也会造成一定流量的浪费。在js中可以通过<code>document.cookie</code>对Cookie值进行访问与修改。每一个Cookie都对应着一个域名，意味着Cookie只能在同域中共享，不能跨域。Cookie能装的数据最大是4KB。</p>
-<pre><code>document.cookie
+<pre><code class="lang-javascript">document.cookie
 &quot;PHPSESSID=web3~ql1jnvp69avo9k373dvhblir86; Hm_lvt_e23800c454aa573c0ccb16b52665ac26=1459693551,1459694728,1459694733,1459755476; Hm_lpvt_e23800c454aa573c0ccb16b52665ac26=1459775028; _ga=GA1.2.1014122426.1458707694; mp_18fe57584af9659dea732cf41c1c0416_mixpanel=%7B%22distinct_id%22%3A%20%22153c23d8ba5409-07f37ca14d64a1-3662760b-fa000-153c23d8ba6783%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%7D; mp_mixpanel__c=724; sf_remember=877dc27158a668934259a466dcbcb49a&quot;
-</code></pre><p>大概就是这么一个东西。</p>
+</code></pre>
+<p>大概就是这么一个东西。</p>
 <p>说了那么多应该能够清楚Cookie是什么一个东西了，但它究竟有什么用呢？从上面可以知道，每一次的请求都会包括Cookie，所以个人认为Cookie最好就是用来做身份验证。当然它也可以用来传递部分的数据，例如用户行为啊之类的。</p>
 <p>服务器通过发送一个名为 Set-Cookie 的HTTP头来创建一个cookie，作为 Response Headers 的一部分。如下图所示，每个Set-Cookie 表示一个 cookie（如果有多个cookie,需写多个Set-Cookie），每个属性也是以名/值对的形式（除了secure），属性间以分号加空格隔开。格式如下：</p>
 <pre><code>Set-Cookie: name=value[; expires=GMTDate][; domain=domain][; path=path][; secure]

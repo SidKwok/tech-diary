@@ -6,7 +6,7 @@
 说说webpack。我觉得（只是个人觉得，感觉应该还有很多地方要补充）webpack就是将所有能打包成一个的东西都打包成一个，那么这样子的话模块化的在浏览器端的实现就显得异常地和谐。将所有模块分开写，然后最后webpack一下讲所有东西pack成一个，虽然不利于别人去阅读，但是很大程度上减少了页面加载时间，而且还不用担心全局变量污染的问题。虽然我对模块化编程的理解还不够，但是目前感觉还是挺方便的。
 
 首先要写一个webpack.config.js：
-```
+```javascript
 var path = require('path');
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
@@ -24,7 +24,7 @@ module.exports = {
 这是最基本的，还有plugins、loaders和tools，这些东西构成了webpack各种屌炸天的功能，但是我还没有开始使用，所以后面再聊。
 
 结合gulp进行自动化：
-```
+```javascript
 gulp.task('webpack', function(){
   return gulp.src("app/index.js")
       .pipe(webpack(require("./webpack.config.js")))

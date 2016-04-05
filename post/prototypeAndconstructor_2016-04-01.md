@@ -2,7 +2,7 @@
 ## 2016.04.01
 
 在进入继承之前先弄懂`prototype`和`constructor`。官方解释，`function`定义的对象会有一个`prototype`的属性，这个属性是指向一个原型对象（也叫`prototype`）的一个指针。如果将一个对象的实例new到一个对象的`prototyp`e属性上，就相当于该对象的`prototype`被那个对象的实例改写了，那么就实现了继承，这个后面再说。
-```
+```javascript
 function Animal(){}
 function Person(){}
 var person1 = new Person();
@@ -18,7 +18,7 @@ console.log(person2 instanceof Animal); // true
 ```
 
 再看`constructor`，这个东西就是在创建对象（`new`）的时候的产物，也是一个指针，指向创建对象的构造函数。
-```
+```javascript
 function Animal(){}
 function Person(){}
 var person1 = new Person();

@@ -6,7 +6,7 @@ Let's talk about JSONP and Ajax。
 首先说Ajax。Ajax的全名是异步的javascript和XML，初期是用来异步传输XML的，但是现在通常是用来传输json数据的（起码我是这么干的）。Ajax的核心是`XMLHttpRequest`对象（IE中是`ActiveXObject`，其中有的属性是`responseText`、`responseXML`、`status`和`statusText`。一般用`status`来确定是否成功。`status`包含的是http状态码，所以是大于200且小于302，或者是等于304（传回来的数据与客户端的数据一致）。
 
 所以Ajax的创建需要遵循几个步骤：创建`xhr`对象、监听事件、打开ajax连接和传输数据。有`get`和`post`，区别是`get`把传回去的数据放在`url`中，而post的数据由`send`发送。
-```
+```javascript
 function createXHR(){
   if (typeof XMLHttpRequest != "undefined"){
     return new XMLHttpRequest();
