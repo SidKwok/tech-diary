@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="-">跨域资源共享</h1>
+<h2 id="2016-04-06">2016.04.06</h2>
+<p>之前一直对CORS的概念模糊不清，今天在这里总结一下。</p>
+<p>先说什么是跨域。</p>
+<p>因为在web应用设计的时候，有时候要涉及到获取外部资源的过程，例如天气信息啊，球队比分啊之类的。但是由于同源策略（只能访问同域资源，何谓同域，就是要求协议、端口号和主机都相同，域名和域名相对的ip也不是同域），脚本只能访问同域资源，那么这时候要怎么办呢？之前的开发者想出了许多66嗒的方法，例如图像ping和JSONP。但是这终究不是官方的方法，所以CORS就出现了。</p>
+<p>非IE浏览器实现CORS很简单（其实IE也不难，下面再讨论），在跨域发送post或者是get请求的时候，只需要将xhr.open()的url参数设置为相应的绝对定位，例如：</p>
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = handler;
+xhr.open(&quot;get&quot;, &quot;http://example.com&quot;, true);
+xhr.send(null);
+</code></pre><p>就是酱紫。</p>
+<p>在这个过程中发生了这么一系列事情：首先浏览器会发送一个请求头，其中的Origin被设置为了本地源，表明这个请求时来自哪里的；服务器接收请求头，然后响应一系列信息，其中最重要的是Access-Control-Allow-Origin，如果该值为*，那么就意味着这个资源谁都可以拿，如果其值为任意一个网站的源，那么就只允许相应网站访问；浏览器处理返回信息。</p>
+<p>如果想发送cookie过去咋办？用withCredentials，用一个例子去说明：</p>
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = handler;
+xhr.open(&quot;get&quot;, url, true);
+xhr.withCredentials = true;
+xhr.send(null);
+</code></pre><p>那么这样子cookie就随着请求头一起发送过去了。整个过程与上面的差不多，不过需要注意的是响应头需要有Access-Control-Allow-Credentials: true 才行，而且Access-Control-Allow-Origin这个值必须为请求资源的域，换成*是不可以的。</p>
+<p>对于IE来说需要定义的是XDomainRequest对象，这个和XMLHttpRequest差不多，还是用例子说明吧：</p>
+<pre><code>var xdr = new XDomainRequest();
+xdr.onload = handler;
+xdr.open(&quot;get&quot;, &quot;http://example.com&quot;);
+xdr.send(null);
+</code></pre><p>需要注意的不同的地方是：</p>
+<ul>
+<li>cookie不会随请求发送，也不会随相应返回</li>
+<li>只能设置请求头部信息的Content-Type字段</li>
+<li>不能访问响应头部信息</li>
+<li>只支持GET和POST</li>
+<li>异步执行</li>
+</ul>
+<p>今天早上收到了百度一面的电话面试，觉得表现的还不错，希望有二面啦。加油！</p>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
