@@ -9,25 +9,25 @@ xhr.onreadystatechange = handler;
 xhr.open(&quot;get&quot;, &quot;http://example.com&quot;, true);
 xhr.send(null);
 </code></pre><p>就是酱紫。</p>
-<p>在这个过程中发生了这么一系列事情：首先浏览器会发送一个请求头，其中的Origin被设置为了本地源，表明这个请求时来自哪里的；服务器接收请求头，然后响应一系列信息，其中最重要的是Access-Control-Allow-Origin，如果该值为*，那么就意味着这个资源谁都可以拿，如果其值为任意一个网站的源，那么就只允许相应网站访问；浏览器处理返回信息。</p>
-<p>如果想发送cookie过去咋办？用withCredentials，用一个例子去说明：</p>
+<p>在这个过程中发生了这么一系列事情：首先浏览器会发送一个请求头，其中的<code>Origin</code>被设置为了本地源，表明这个请求时来自哪里的；服务器接收请求头，然后响应一系列信息，其中最重要的是<code>Access-Control-Allow-Origin</code>，如果该值为*，那么就意味着这个资源谁都可以拿，如果其值为任意一个网站的源，那么就只允许相应网站访问；浏览器处理返回信息。</p>
+<p>如果想发送<code>cookie</code>过去咋办？用<code>withCredentials</code>，用一个例子去说明：</p>
 <pre><code>var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = handler;
 xhr.open(&quot;get&quot;, url, true);
 xhr.withCredentials = true;
 xhr.send(null);
-</code></pre><p>那么这样子cookie就随着请求头一起发送过去了。整个过程与上面的差不多，不过需要注意的是响应头需要有Access-Control-Allow-Credentials: true 才行，而且Access-Control-Allow-Origin这个值必须为请求资源的域，换成*是不可以的。</p>
-<p>对于IE8、9来说需要定义的是XDomainRequest对象，这个和XMLHttpRequest差不多，还是用例子说明吧：</p>
+</code></pre><p>那么这样子<code>cookie</code>就随着请求头一起发送过去了。整个过程与上面的差不多，不过需要注意的是响应头需要有<code>Access-Control-Allow-Credentials: true</code> 才行，而且<code>Access-Control-Allow-Origin</code>这个值必须为请求资源的域，换成*是不可以的。</p>
+<p>对于IE8、9来说需要定义的是<code>XDomainRequest</code>对象，这个和<code>XMLHttpRequest</code>差不多，还是用例子说明吧：</p>
 <pre><code>var xdr = new XDomainRequest();
 xdr.onload = handler;
 xdr.open(&quot;get&quot;, &quot;http://example.com&quot;);
 xdr.send(null);
 </code></pre><p>需要注意的不同的地方是：</p>
 <ul>
-<li>cookie不会随请求发送，也不会随相应返回</li>
-<li>只能设置请求头部信息的Content-Type字段</li>
+<li><code>cookie</code>不会随请求发送，也不会随相应返回</li>
+<li>只能设置请求头部信息的<code>Content-Type</code>字段</li>
 <li>不能访问响应头部信息</li>
-<li>只支持GET和POST</li>
+<li>只支持<code>GET</code>和<code>POST</code></li>
 <li>异步执行</li>
 </ul>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP access control (CORS)</a></p>
