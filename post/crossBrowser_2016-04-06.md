@@ -18,9 +18,9 @@ xhr.send(null);
 ```
 就是酱紫。
 
-在这个过程中发生了这么一系列事情：首先浏览器会发送一个请求头，其中的Origin被设置为了本地源，表明这个请求时来自哪里的；服务器接收请求头，然后响应一系列信息，其中最重要的是Access-Control-Allow-Origin，如果该值为\*，那么就意味着这个资源谁都可以拿，如果其值为任意一个网站的源，那么就只允许相应网站访问；浏览器处理返回信息。
+在这个过程中发生了这么一系列事情：首先浏览器会发送一个请求头，其中的`Origin`被设置为了本地源，表明这个请求时来自哪里的；服务器接收请求头，然后响应一系列信息，其中最重要的是`Access-Control-Allow-Origin`，如果该值为\*，那么就意味着这个资源谁都可以拿，如果其值为任意一个网站的源，那么就只允许相应网站访问；浏览器处理返回信息。
 
-如果想发送cookie过去咋办？用withCredentials，用一个例子去说明：
+如果想发送`cookie`过去咋办？用`withCredentials`，用一个例子去说明：
 
 ```
 var xhr = new XMLHttpRequest();
@@ -30,9 +30,9 @@ xhr.withCredentials = true;
 xhr.send(null);
 ```
 
-那么这样子cookie就随着请求头一起发送过去了。整个过程与上面的差不多，不过需要注意的是响应头需要有Access-Control-Allow-Credentials: true 才行，而且Access-Control-Allow-Origin这个值必须为请求资源的域，换成\*是不可以的。
+那么这样子`cookie`就随着请求头一起发送过去了。整个过程与上面的差不多，不过需要注意的是响应头需要有`Access-Control-Allow-Credentials: true` 才行，而且`Access-Control-Allow-Origin`这个值必须为请求资源的域，换成\*是不可以的。
 
-对于IE8、9来说需要定义的是XDomainRequest对象，这个和XMLHttpRequest差不多，还是用例子说明吧：
+对于IE8、9来说需要定义的是`XDomainRequest`对象，这个和`XMLHttpRequest`差不多，还是用例子说明吧：
 
 ```
 var xdr = new XDomainRequest();
@@ -43,10 +43,10 @@ xdr.send(null);
 
 需要注意的不同的地方是：
 
-* cookie不会随请求发送，也不会随相应返回
-* 只能设置请求头部信息的Content-Type字段
+* `cookie`不会随请求发送，也不会随相应返回
+* 只能设置请求头部信息的`Content-Type`字段
 * 不能访问响应头部信息
-* 只支持GET和POST
+* 只支持`GET`和`POST`
 * 异步执行
 
 [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)
