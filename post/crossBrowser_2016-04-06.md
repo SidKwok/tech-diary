@@ -7,7 +7,7 @@
 
 因为在web应用设计的时候，有时候要涉及到获取外部资源的过程，例如天气信息啊，球队比分啊之类的。但是由于同源策略（只能访问同域资源，何谓同域，就是要求协议、端口号和主机都相同，域名和域名相对的ip也不是同域），脚本只能访问同域资源，那么这时候要怎么办呢？之前的开发者想出了许多66嗒的方法，例如图像ping和JSONP。但是这终究不是官方的方法，所以CORS就出现了。
 
-非IE浏览器实现CORS很简单（其实IE也不难，下面再讨论），在跨域发送post或者是get请求的时候，只需要将xhr.open()的url参数设置为相应的绝对定位，例如：
+非IE8、9浏览器实现CORS很简单（其实IE8、9也不难，下面再讨论），在跨域发送post或者是get请求的时候，只需要将xhr.open()的url参数设置为相应的绝对定位，例如：
 
 ```
 var xhr = new XMLHttpRequest();
@@ -32,7 +32,7 @@ xhr.send(null);
 
 那么这样子cookie就随着请求头一起发送过去了。整个过程与上面的差不多，不过需要注意的是响应头需要有Access-Control-Allow-Credentials: true 才行，而且Access-Control-Allow-Origin这个值必须为请求资源的域，换成\*是不可以的。
 
-对于IE来说需要定义的是XDomainRequest对象，这个和XMLHttpRequest差不多，还是用例子说明吧：
+对于IE8、9来说需要定义的是XDomainRequest对象，这个和XMLHttpRequest差不多，还是用例子说明吧：
 
 ```
 var xdr = new XDomainRequest();
@@ -48,5 +48,9 @@ xdr.send(null);
 * 不能访问响应头部信息
 * 只支持GET和POST
 * 异步执行
+
+[HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)
+
+[Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
 
 今天早上收到了百度一面的电话面试，觉得表现的还不错，希望有二面啦。加油！
