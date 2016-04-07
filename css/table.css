@@ -1,9 +1,10 @@
-body > table > tbody > tr:nth-child(9) > td:nth-child(4){background-color: rgba(62,172,168,0.3286);}
 body > table > tbody > tr:nth-child(10) > td:nth-child(30){background-color: rgba(62,172,168,0.5404);}
+body > table > tbody > tr:nth-child(9) > td:nth-child(4){background-color: rgba(62,172,168,0.3286);}
 body > table > tbody > tr:nth-child(9) > td:nth-child(7){background-color: rgba(62,172,168,1.6056);}
-body > table > tbody > tr:nth-child(10) > td:nth-child(31){background-color: rgba(62,172,168,0.3926);}
 body > table > tbody > tr:nth-child(9) > td:nth-child(6){background-color: rgba(62,172,168,0.7048);}
+body > table > tbody > tr:nth-child(9) > td:nth-child(8){background-color: rgba(62,172,168,0.5088);}
+body > table > tbody > tr:nth-child(10) > td:nth-child(31){background-color: rgba(62,172,168,0.3926);}
+body > table > tbody > tr:nth-child(9) > td:nth-child(2){background-color: rgba(62,172,168,0.9202);}
 body > table > tbody > tr:nth-child(10) > td:nth-child(32){background-color: rgba(62,172,168,0.4808);}
 body > table > tbody > tr:nth-child(9) > td:nth-child(3){background-color: rgba(62,172,168,0.5426);}
-body > table > tbody > tr:nth-child(9) > td:nth-child(2){background-color: rgba(62,172,168,0.9202);}
 body > table > tbody > tr:nth-child(9) > td:nth-child(5){background-color: rgba(62,172,168,0.762);}
