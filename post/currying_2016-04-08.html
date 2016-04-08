@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="-">函数柯里化</h1>
+<h2 id="2016-04-08">2016.04.08</h2>
+<p>复习了一下js高级程序涉设计的高级技巧，发现了一个之前没有弄懂的技巧，函数柯里化。</p>
+<p>其实也挺简单的，就是将函数的前几个参数给弄成一个默认值，然后再返回一个新的函数，该函数是以前几个参数为默认值的新函数。先说怎么用，再说为什么要用。</p>
+<pre><code>function currying(fn){
+  var args = Array.prototype.slice.call(arguments, 1);
+  return function(){
+    var innerArgs = Array.prototype.slice.call(arguments);
+    var finalArgs = args.concat(innerArgs);
+    return fn.apply(null, finalArgs);
+  };
+}
+</code></pre><p>柯里化函数接受的第一个参数是需要柯里化的参数，后面的参数是相应的默认参数。首先，获取<code>currying</code>的除了第一个参数的所有参数，存到<code>args</code>，<code>args</code>中存储的是默认参数。然后返回一个柯里化的匿名函数，在匿名函数中，<code>innerArgs</code>是对柯里化函数的参数进行获取(之所以要用<code>Array</code>的<code>slice</code>方法是为了让其变成一个数组)。后面，将柯里化函数的参数与默认参数组合成一个新的参数数组，最后传入<code>fn</code>。</p>
+<p>那么这个有什么用呢？</p>
+<p>个人认为最主要是用于消除具有重复参数的运用，生成功能更加明确的函数，举例说明：</p>
+<pre><code>function doSth(action, a, b){
+  return action(a, b);
+}
+
+function add(a, b){
+  return a + b;
+}
+
+function sub(a, b){
+  return a - b;
+}
+
+var addresult = doSth(add, 3, 1);
+var subresult = doSth(sub, 3, 1);
+
+console.log(addresult, subresult); // 4, 2
+</code></pre><p>函数的功能都明确，所以就不解释了，在这里其实有必要用柯里化函数进行功能的具体化。</p>
+<pre><code>...
+
+function currying(fn){
+  var args = Array.prototype.slice.call(arguments, 1);
+  return function(){
+    var innerArgs = Array.prototype.slice.call(arguments);
+    var finalArgs = args.concat(innerArgs);
+    return fn.apply(null, finalArgs);
+  };
+}
+
+var Add = currying(doSth, add);
+var Sub = currying(doSth, sub);
+
+console.log(Add(3, 1), Sub(3, 1)); // 4, 2
+</code></pre><p>柯里化函数有利于降低函数的适用范围，提高函数的使用性。但柯里化函数的用途好像还不止这样，以后遇到再补充。</p>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
