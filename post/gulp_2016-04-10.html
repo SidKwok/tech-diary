@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="gulp-">Gulp基本用法及相关插件</h1>
+<h2 id="2016-04-10">2016.04.10</h2>
+<p>之前一直都在用gulp进行一些自动化的工作，但是一直都没有时间系统地去看一下它的api，今天仔细地看了一下它的文档，发现需要掌握的东西真的不多，充分地展现了各种插件的强大。现在来说说gulp。</p>
+<p>我认为，gulp是用来定义任务的，而每一个任务都会有相应一系列的操作。在gulp中，插件是以流的形式来一步步操作的。流是什么呢？我找天集中研究一下，因为这之中涉及的东西太广泛，现在只是研究gulp的相关操作。可以暂时把流理解为把上一步操作的结果交给下一步操作。</p>
+<p>先说说<code>glob</code>语法，因为这是获取文件的重要手段。</p>
+<ul>
+<li>* 匹配任意数量的字符，但不匹配/</li>
+<li>? 匹配单个字符，但不匹配/</li>
+<li>** 匹配任意数量的字符，包括/，只要它是路径中唯一的一部分</li>
+<li>{} 允许使用一个逗号分割的列表或者表达式</li>
+<li>! 在模式的开头用于否定一个匹配模式(即排除与模式匹配的信息)</li>
+</ul>
+<p>说几个常用的。<code>client/templates/*.jade</code>对应的是<code>client/templates</code>下所有的jade文件。<code>client/**/*.jade</code>对应的是client文件夹下所有包括子文件夹里的jade文件。</p>
+<p>结合着官方文档和相关代码来解释一下各个api的使用。</p>
+<h3 id="gulp-src-globs-options-">gulp.src(globs[, options])</h3>
+<p>其中使用的是glob语法，也可以直接写文件的名字。这是用来传入相关文件的，通俗点就是将一个原产品放进工厂，然后进行一步步的加工。</p>
+<pre><code class="lang-javascript">gulp.src(&#39;client/templates/*.jade&#39;)
+  .pipe(jade())
+  .pipe(minify())
+</code></pre>
+<p>这个例子就是，先获取文件，然后对文件进行jade()操作，然后jade()返回的结果传到minify()操作。</p>
+<h3 id="gulp-dest-path-options-">gulp.dest(path[, options])</h3>
+<p>将流产生的结果输出到相应的文件。</p>
+<pre><code class="lang-javascript">gulp.src(&#39;./client/templates/*.jade&#39;)
+  .pipe(jade())
+  .pipe(gulp.dest(&#39;./build/templates&#39;))
+  .pipe(minify())
+  .pipe(gulp.dest(&#39;./build/minified_templates&#39;));
+</code></pre>
+<p>先获取文件，进行jade()，生成文件存到<code>./build/templates</code>，流中的数据再存到minify()，处理后生成文件存到<code>./build/minified_templates</code>。</p>
+<h3 id="gulp-task-name-deps-fn-">gulp.task(name[, deps], fn)</h3>
+<p>定义一个任务，第一个参数是任务的名称，第二个参数是一个数组，用来存储任务名称，需要执行完其中的任务之后才能执行这个任务，第三个参数是定义该任务需要的操作。</p>
+<pre><code class="lang-javascript">gulp.task(&#39;mytask&#39;, [&#39;array&#39;, &#39;of&#39;, &#39;task&#39;, &#39;names&#39;], function() {
+  // 做一些事
+});
+</code></pre>
+<p>在命令行中运行<code>gulp mytask</code>就会运行该任务。而需要注意的是第二个参数，mytask会等到数组中的所有任务完成之后才会运行，而数组中的任务默认是最大并行数运行，如果想按顺序，那么就要酱紫：</p>
+<pre><code class="lang-javascript">var gulp = require(&#39;gulp&#39;);
+
+// 返回一个 callback，因此系统可以知道它什么时候完成
+gulp.task(&#39;one&#39;, function(cb) {
+    // 做一些事 -- 异步的或者其他的
+    cb(err); // 如果 err 不是 null 或 undefined，则会停止执行，且注意，这样代表执行失败了
+});
+
+// 定义一个所依赖的 task 必须在这个 task 执行之前完成
+gulp.task(&#39;two&#39;, [&#39;one&#39;], function() {
+    // &#39;one&#39; 完成后
+});
+
+gulp.task(&#39;default&#39;, [&#39;one&#39;, &#39;two&#39;]);
+</code></pre>
+<p>注意，default任务只需要在命令行中运行gulp就可以了。</p>
+<h3 id="gulp-watch-glob-opts-tasks-">gulp.watch(glob[, opts], tasks)</h3>
+<p>监视某个路径下的文件，如果有改动就会触发tasks中的任务和fn中的操作，tasks和fn可以两者选其一或者都选。</p>
+<pre><code class="lang-javascript">gulp.watch([&#39;jade/*.jade&#39;, &#39;css/**/*.css&#39;], [&#39;jade&#39;, &#39;css&#39;]);
+gulp.watch([&#39;js/*.js&#39;, &#39;html/**/*.html&#39;], function(event){
+  //每次变动都会执行的操作
+});
+</code></pre>
+<p>....待补充</p>
+<h3 id="-">一些有用的插件（会不定期更新）</h3>
+<p><a href="https://www.npmjs.com/package/gulp-uglify">gulp-uglify</a>：</p>
+<p>压缩js。</p>
+<pre><code class="lang-javascript">var uglify = require(&#39;gulp-uglify&#39;);
+
+gulp.task(&#39;compress&#39;, function() {
+  return gulp.src(&#39;lib/*.js&#39;)
+    .pipe(uglify())
+    .pipe(gulp.dest(&#39;dist&#39;));
+});
+</code></pre>
+<p><a href="https://www.npmjs.com/package/gulp-jade/">gulp-jade</a>:</p>
+<p>给jade模板文件生成静态文件。</p>
+<pre><code class="lang-javascript">var jade = require(&#39;gulp-jade&#39;);
+
+gulp.task(&#39;templates&#39;, function() {
+  var YOUR_LOCALS = {};
+
+  gulp.src(&#39;./lib/*.jade&#39;)
+    .pipe(jade({
+      locals: YOUR_LOCALS
+    }))
+    .pipe(gulp.dest(&#39;./dist/&#39;))
+});
+</code></pre>
+<p><a href="https://www.npmjs.com/package/gulp-markdown/">gulp-markdown</a>:</p>
+<p>将markdown文件转换为静态文件。</p>
+<pre><code class="lang-javascript">var gulp = require(&#39;gulp&#39;);
+var markdown = require(&#39;gulp-markdown&#39;);
+
+gulp.task(&#39;default&#39;, function () {
+    return gulp.src(&#39;intro.md&#39;)
+        .pipe(markdown())
+        .pipe(gulp.dest(&#39;dist&#39;));
+});
+</code></pre>
+<p><a href="https://www.npmjs.com/package/gulp-layout/">gulp-layout</a>:</p>
+<p>结合模板文件与相关静态文件。</p>
+<pre><code class="lang-javascript">var gulp = require(&#39;gulp&#39;);
+var layout = require(&#39;gulp-layout&#39;);
+
+gulp.task(&#39;build&#39;, function() {
+  return gulp.src(&#39;./src/test.html&#39;)
+    .pipe(layout({
+      title: &#39;Hello World&#39;,
+      layout: &#39;post.jade&#39;
+    }))
+    .pipe(gulp.dest(&#39;./dist&#39;));
+});
+</code></pre>
+<p>(src) test.html:</p>
+<pre><code class="lang-html">&lt;p&gt;gulp&lt;/p&gt;
+</code></pre>
+<p>(layout) post.jade:</p>
+<pre><code class="lang-jade">h1= title
+|!= contents
+</code></pre>
+<p>(dist) test.html:</p>
+<pre><code class="lang-html">&lt;h1&gt;Hello World&lt;/h1&gt;&lt;p&gt;gulp&lt;/p&gt;
+</code></pre>
+<p><a href="https://www.npmjs.com/package/gulp-gh-pages/">gulp-gh-pages</a>:</p>
+<p>将所有文件push到gh-pages分支上。</p>
+<pre><code class="lang-javascript">var gulp = require(&#39;gulp&#39;);
+var ghPages = require(&#39;gulp-gh-pages&#39;);
+
+gulp.task(&#39;deploy&#39;, function() {
+  return gulp.src(&#39;./dist/**/*&#39;)
+    .pipe(ghPages());
+});
+</code></pre>
+<p><a href="https://www.npmjs.com/package/webpack-stream/">webpack-stream</a>:</p>
+<p>在gulp中使用webapck。</p>
+<pre><code class="lang-javascript">gulp.task(&#39;webpack&#39;, function() {
+  return gulp.src(&quot;app/index.js&quot;)
+    .pipe(webpack(require(&quot;./webpack.config.js&quot;)))
+    .pipe(gulp.dest(&quot;./build/js/&quot;))
+});
+</code></pre>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
