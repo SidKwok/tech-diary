@@ -16,6 +16,7 @@
 .content h3{
   font-size: 20px;
   text-shadow: 2px 2px 2px gray;
+  font-weight: lighter;
 }
 .content p{
   text-indent: 2em;
