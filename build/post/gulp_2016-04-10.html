@@ -55,10 +55,14 @@ gulp.task(&#39;default&#39;, [&#39;one&#39;, &#39;two&#39;]);
 <p>监视某个路径下的文件，如果有改动就会触发tasks中的任务和fn中的操作，tasks和fn可以两者选其一或者都选。</p>
 <pre><code class="lang-javascript">gulp.watch([&#39;jade/*.jade&#39;, &#39;css/**/*.css&#39;], [&#39;jade&#39;, &#39;css&#39;]);
 gulp.watch([&#39;js/*.js&#39;, &#39;html/**/*.html&#39;], function(event){
-  //每次变动都会执行的操作
+  // 每次变动都会执行的操作
+});
+gulp.watch([&#39;jade/*.jade&#39;, &#39;css/**/*.css&#39;]).on(&quot;change&quot;, function(event){
+  // 这个与上面的区别是，上面的是设置了一个回调函数，而这一个是注册了一个事件函数，其效果是一样的
+  // event.type: 发生改变的类型，added、changed或deleted
+  // event.path: 触发了该事件的文件路径
 });
 </code></pre>
-<p>....待补充</p>
 <h3 id="-">一些有用的插件（会不定期更新）</h3>
 <p><a href="https://www.npmjs.com/package/gulp-uglify">gulp-uglify</a>：</p>
 <p>压缩js。</p>
