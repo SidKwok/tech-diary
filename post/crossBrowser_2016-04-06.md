@@ -7,9 +7,9 @@
 
 因为在web应用设计的时候，有时候要涉及到获取外部资源的过程，例如天气信息啊，球队比分啊之类的。但是由于同源策略（只能访问同域资源，何谓同域，就是要求协议、端口号和主机都相同，域名和域名相对的ip也不是同域），脚本只能访问同域资源，那么这时候要怎么办呢？之前的开发者想出了许多66嗒的方法，例如图像ping和JSONP。但是这终究不是官方的方法，所以CORS就出现了。
 
-非IE8、9浏览器实现CORS很简单（其实IE8、9也不难，下面再讨论），在跨域发送post或者是get请求的时候，只需要将xhr.open()的url参数设置为相应的绝对定位，例如：
+非IE8、9浏览器实现CORS很简单（其实IE8、9也不难，下面再讨论），在跨域发送`post`或者是`get`请求的时候，只需要将`xhr.open()`的url参数设置为相应的绝对定位，例如：
 
-```
+```javascript
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = handler;
 xhr.open("get", "http://example.com", true);
@@ -22,7 +22,7 @@ xhr.send(null);
 
 如果想发送`cookie`过去咋办？用`withCredentials`，用一个例子去说明：
 
-```
+```javascript
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = handler;
 xhr.open("get", url, true);
@@ -34,7 +34,7 @@ xhr.send(null);
 
 对于IE8、9来说需要定义的是`XDomainRequest`对象，这个和`XMLHttpRequest`差不多，还是用例子说明吧：
 
-```
+```javascript
 var xdr = new XDomainRequest();
 xdr.onload = handler;
 xdr.open("get", "http://example.com");

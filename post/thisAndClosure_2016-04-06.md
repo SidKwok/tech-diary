@@ -8,7 +8,7 @@
 `this`的官方定义是函数上下文。在函数创建的时候会生成两个内部对象，一个是`arguments`，另外一个就是`this`。而`this`是在运行时基于函数的执行环境绑定的。其实很简单，一句话，谁调用，`this`就指向谁。
 
 来个栗子：
-```
+```javascript
 global.name = "global"; // 因为测试环境时Node，所以全局对象是global，在浏览器中是window
 
 function sayName(){
@@ -28,7 +28,7 @@ hotshot.sayName(); // sid
 
 够清楚了吧？再来！
 
-```
+```JavaScript
 function test(){}
 
 var hotshot = new test();
@@ -47,7 +47,7 @@ hotshot.sayThis(); // test { sayThis: [Function] }
 
 简单说，作用域就是一个函数能够作用的范围，而函数只能访问到自己作用域中的变量，不能访问别的作用域。而这个时候就会有一个叫做作用域链的东西，其实它很简单，就是函数访问变量时候的顺序。首先，在函数创建的时候，其`arguements`肯定是在作用域链的最前端的，然后到自己的内部变量，然后再到外部函数的`arguements`，依次类推。
 
-```
+```javascript
 function oustside(value1){
   var value2;
   function inside(value3){
@@ -61,7 +61,7 @@ function oustside(value1){
 
 前面已经给了闭包的定义了，但是我们常说的必报，应该是在函数里面再定义一个函数的情况，通常是在函数里返回一个函数。如果在一个函数里面返回一个函数，那么这个返回的函数就会拥有一整条作用域链，也就是包涵着包括全局的整个作用域。通过这种方法我们可以对函数的内部变量进行访问或者操作。而闭包中保存的是变量的引用，并不是值，所以会产生这种情况：
 
-```
+```javascript
 function test(){
   var result = [];
   for(var i = 0; i < 4; i++){
@@ -81,7 +81,7 @@ test();
 
 `result`中保存的只是i的引用，所以最后的结果都是i。可以改成：
 
-```
+```javascript
 function test(){
   var result = [];
   for(var i = 0; i < 4; i++){
@@ -103,7 +103,7 @@ test();
 
 这样子相当于将i当作参数传进去了，参数传的都是值，所以不会产生那样子的问题。还可以改成：
 
-```
+```javascript
 function test(){
   var result = [];
   for(var i = 0; i < 4; i++){
@@ -123,7 +123,7 @@ test();
 将其改为一个自执行的函数，一到那里马上执行，那么`result`马上就会接收到值，所以问题也解决了。
 
 十分经典的一道题：一个数组`[1, 2, 3, 4, 5]`，每隔一秒钟输出一个字母。
-```
+```javascript
 var array = [1, 2, 3, 4, 5];
 
 for(var i = 0; i < array.length; i++){
@@ -137,7 +137,7 @@ for(var i = 0; i < array.length; i++){
 原因就不解释了。
 
 再结合上面的`this`举个栗子：
-```
+```javascript
 global.name = "global";
 
 var test = {

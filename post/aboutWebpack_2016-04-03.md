@@ -21,7 +21,7 @@ module.exports = {
 };
 
 ```
-这是最基本的，还有plugins、loaders和tools，这些东西构成了webpack各种屌炸天的功能，但是我还没有开始使用，所以后面再聊。
+这是最基本的，还有`plugins`、`loaders`和`tools`，这些东西构成了webpack各种屌炸天的功能，但是我还没有开始使用，所以后面再聊。
 
 结合gulp进行自动化：
 ```javascript
