@@ -5,7 +5,7 @@
 <hr>
 <h3 id="-">原型链</h3>
 <p>用父类来重写子类的原型对象，但是这种方法会导致引用类型被所有实例共享。引用类型（<code>Array</code>、<code>Object</code>和<code>Function</code>）嘛，顾名思义是引用来的，保存的只是引用值，所有任何一个地方修改了都会导致全部修改（其实这样说也不妥，因为终究只有一个，其他的只是引用它并且有权力去修改它）。</p>
-<pre><code class="lang-javascript">function Father(){
+<pre><code class="lang-Javascript">function Father(){
   this.name = &quot;sid&quot;;
   this.color = [&quot;red&quot;];
 }
@@ -29,7 +29,7 @@ console.log(son2.color); // [ &#39;red&#39;, &#39;puple&#39; ]
 <hr>
 <h3 id="-">借用构造函数</h3>
 <p>在子类中通过执行父类达成子类继承父类，要是用到上下文的变换，可以传递参数。</p>
-<pre><code class="lang-javascript">function Father(name){
+<pre><code class="lang-Javascript">function Father(name){
   this.name = name;
   this.color = [&quot;red&quot;];
 }
@@ -53,7 +53,7 @@ console.log(son2.color); // [ &#39;red&#39;, &#39;purple&#39;]
 <hr>
 <h3 id="-">组合继承</h3>
 <p>用构造函数来继承属性，用原型链继承公用的属性和方法。</p>
-<pre><code class="lang-javascript">function Father(name){
+<pre><code class="lang-Javascript">function Father(name){
   this.name = name;
 }
 

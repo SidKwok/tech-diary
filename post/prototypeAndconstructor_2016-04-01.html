@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="prototype-constructor-">prototype与constructor的解释</h1>
 <h2 id="2016-04-01">2016.04.01</h2>
 <p>在进入继承之前先弄懂<code>prototype</code>和<code>constructor</code>。官方解释，<code>function</code>定义的对象会有一个<code>prototype</code>的属性，这个属性是指向一个原型对象（也叫<code>prototype</code>）的一个指针。如果将一个对象的实例new到一个对象的<code>prototype</code>属性上，就相当于该对象的<code>prototype</code>被那个对象的实例改写了，那么就实现了继承，这个后面再说。</p>
-<pre><code class="lang-javascript">function Animal(){}
+<pre><code class="lang-Javascript">function Animal(){}
 function Person(){}
 var person1 = new Person();
 console.log(Person.prototype); // Person{}
@@ -15,7 +15,7 @@ console.log(person2 instanceof Object); // true
 console.log(person2 instanceof Animal); // true
 </code></pre>
 <p>再看<code>constructor</code>，这个东西就是在创建对象（<code>new</code>）的时候的产物，也是一个指针，指向创建对象的构造函数。</p>
-<pre><code class="lang-javascript">function Animal(){}
+<pre><code class="lang-Javascript">function Animal(){}
 function Person(){}
 var person1 = new Person();
 console.log(Person.prototype.constructor); // [Function: Person]
