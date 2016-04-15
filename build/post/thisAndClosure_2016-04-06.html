@@ -4,7 +4,7 @@
 <h3 id="this">this</h3>
 <p><code>this</code>的官方定义是函数上下文。在函数创建的时候会生成两个内部对象，一个是<code>arguments</code>，另外一个就是<code>this</code>。而<code>this</code>是在运行时基于函数的执行环境绑定的。其实很简单，一句话，谁调用，<code>this</code>就指向谁。</p>
 <p>来个栗子：</p>
-<pre><code class="lang-javascript">global.name = &quot;global&quot;; // 因为测试环境时Node，所以全局对象是global，在浏览器中是window
+<pre><code class="lang-Javascript">global.name = &quot;global&quot;; // 因为测试环境时Node，所以全局对象是global，在浏览器中是window
 
 function sayName(){
   console.log(this.name);
@@ -33,7 +33,7 @@ hotshot.sayThis(); // test { sayThis: [Function] }
 <h3 id="-">闭包</h3>
 <p>闭包的准确定义是一个函数在创建时允许该自身函数访问并操作该自身函数之外的变量时所创建的作用域。所以在讨论闭包之前，应该对作用域有一个清晰的了解。</p>
 <p>简单说，作用域就是一个函数能够作用的范围，而函数只能访问到自己作用域中的变量，不能访问别的作用域。而这个时候就会有一个叫做作用域链的东西，其实它很简单，就是函数访问变量时候的顺序。首先，在函数创建的时候，其<code>arguements</code>肯定是在作用域链的最前端的，然后到自己的内部变量，然后再到外部函数的<code>arguements</code>，依次类推。</p>
-<pre><code class="lang-javascript">function oustside(value1){
+<pre><code class="lang-Javascript">function oustside(value1){
   var value2;
   function inside(value3){
     var value4;
@@ -43,7 +43,7 @@ hotshot.sayThis(); // test { sayThis: [Function] }
 <p>在这里，作用域链是 value3-&gt;value4-&gt;value1-&gt;value2。在函数中如果使用到变量的话，就会沿着作用域链的前端进行搜索，直到<code>window</code>，如果还是没找到，就会显示<code>ReferenceError</code>。所谓的变量声明提升就是这么个意思。需要注意的是，这里说的是声明，跟赋值是不一样的，赋值还是按照语句的先后进行的。</p>
 <p>我的天，铺垫了这么多终于可以开始说闭包了。</p>
 <p>前面已经给了闭包的定义了，但是我们常说的必报，应该是在函数里面再定义一个函数的情况，通常是在函数里返回一个函数。如果在一个函数里面返回一个函数，那么这个返回的函数就会拥有一整条作用域链，也就是包涵着包括全局的整个作用域。通过这种方法我们可以对函数的内部变量进行访问或者操作。而闭包中保存的是变量的引用，并不是值，所以会产生这种情况：</p>
-<pre><code class="lang-javascript">function test(){
+<pre><code class="lang-Javascript">function test(){
   var result = [];
   for(var i = 0; i &lt; 4; i++){
     result[i] = function(){
@@ -60,7 +60,7 @@ hotshot.sayThis(); // test { sayThis: [Function] }
 test();
 </code></pre>
 <p><code>result</code>中保存的只是i的引用，所以最后的结果都是i。可以改成：</p>
-<pre><code class="lang-javascript">function test(){
+<pre><code class="lang-Javascript">function test(){
   var result = [];
   for(var i = 0; i &lt; 4; i++){
     result[i] = function(j){
@@ -79,7 +79,7 @@ test();
 test();
 </code></pre>
 <p>这样子相当于将i当作参数传进去了，参数传的都是值，所以不会产生那样子的问题。还可以改成：</p>
-<pre><code class="lang-javascript">function test(){
+<pre><code class="lang-Javascript">function test(){
   var result = [];
   for(var i = 0; i &lt; 4; i++){
     result[i] = (function(){
@@ -97,7 +97,7 @@ test();
 </code></pre>
 <p>将其改为一个自执行的函数，一到那里马上执行，那么<code>result</code>马上就会接收到值，所以问题也解决了。</p>
 <p>十分经典的一道题：一个数组<code>[1, 2, 3, 4, 5]</code>，每隔一秒钟输出一个字母。</p>
-<pre><code class="lang-javascript">var array = [1, 2, 3, 4, 5];
+<pre><code class="lang-Javascript">var array = [1, 2, 3, 4, 5];
 
 for(var i = 0; i &lt; array.length; i++){
   (function(j){
@@ -109,7 +109,7 @@ for(var i = 0; i &lt; array.length; i++){
 </code></pre>
 <p>原因就不解释了。</p>
 <p>再结合上面的<code>this</code>举个栗子：</p>
-<pre><code class="lang-javascript">global.name = &quot;global&quot;;
+<pre><code class="lang-Javascript">global.name = &quot;global&quot;;
 
 var test = {
   name: &quot;test&quot;,

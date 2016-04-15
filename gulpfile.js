@@ -62,3 +62,5 @@ gulp.task('deploy', function() {
 gulp.task('default', ['serve']);
 
 gulp.task('build', ['createcss', 'jade', 'webpack', 'posts']);
+
+gulp.task('bd', ['build', 'deploy']);

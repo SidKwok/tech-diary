@@ -8,7 +8,7 @@
 ###  原型链
 用父类来重写子类的原型对象，但是这种方法会导致引用类型被所有实例共享。引用类型（`Array`、`Object`和`Function`）嘛，顾名思义是引用来的，保存的只是引用值，所有任何一个地方修改了都会导致全部修改（其实这样说也不妥，因为终究只有一个，其他的只是引用它并且有权力去修改它）。
 
-```javascript
+```Javascript
 function Father(){
   this.name = "sid";
   this.color = ["red"];
@@ -36,7 +36,7 @@ console.log(son2.color); // [ 'red', 'puple' ]
 ### 借用构造函数
 在子类中通过执行父类达成子类继承父类，要是用到上下文的变换，可以传递参数。
 
-```javascript
+```Javascript
 function Father(name){
   this.name = name;
   this.color = ["red"];
@@ -64,7 +64,7 @@ console.log(son2.color); // [ 'red', 'purple']
 ### 组合继承
 用构造函数来继承属性，用原型链继承公用的属性和方法。
 
-```javascript
+```Javascript
 function Father(name){
   this.name = name;
 }

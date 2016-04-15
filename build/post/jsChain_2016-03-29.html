@@ -2,7 +2,7 @@
 <h2 id="2016-3-29">2016.3.29</h2>
 <p>js的链式调用简单得像abc那样。简单一句话就是，在每个方法的最后返回<code>this</code>,那么对象调用完其方法之后自然就会返回自己，那么显然就可以继续调用其他的方法。需要留意的是只有定义在原型对象上面的方法才可以，就是组合模式那点东西嘛。</p>
 <p>talk is cheap</p>
-<pre><code class="lang-javascript">(function(){
+<pre><code class="lang-Javascript">(function(){
   function _father(name, age, hobby){
     this.name = name;
     this.age = age;
@@ -35,7 +35,7 @@ Father(&quot;sid&quot;, 21, &quot;sport&quot;).sayName().sayAge().sayHobby();
 21
 sport
 </code></pre><p>卧槽，深夜看懂了一段代码，发现屌炸天了，先放：</p>
-<pre><code class="lang-javascript">function coreFunction() {
+<pre><code class="lang-Javascript">function coreFunction() {
     if (fnQueue.length) {
         fnQueue.shift().apply(contextQueue.shift(), [].concat(argsQueue.shift()));
     }

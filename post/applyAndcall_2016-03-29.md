@@ -6,7 +6,7 @@
 其实一言以蔽之，`apply`和`call`是改变某个对象的`this`的。怎么改变？
 
 具体用法：
-```javascript
+```Javascript
 function doSth(name, age, hobby){
   this.name = name;
   this.age = age;

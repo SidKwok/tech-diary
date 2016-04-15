@@ -9,7 +9,7 @@
 
 非IE8、9浏览器实现CORS很简单（其实IE8、9也不难，下面再讨论），在跨域发送`post`或者是`get`请求的时候，只需要将`xhr.open()`的url参数设置为相应的绝对定位，例如：
 
-```javascript
+```Javascript
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = handler;
 xhr.open("get", "http://example.com", true);
@@ -22,7 +22,7 @@ xhr.send(null);
 
 如果想发送`cookie`过去咋办？用`withCredentials`，用一个例子去说明：
 
-```javascript
+```Javascript
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = handler;
 xhr.open("get", url, true);
@@ -34,7 +34,7 @@ xhr.send(null);
 
 对于IE8、9来说需要定义的是`XDomainRequest`对象，这个和`XMLHttpRequest`差不多，还是用例子说明吧：
 
-```javascript
+```Javascript
 var xdr = new XDomainRequest();
 xdr.onload = handler;
 xdr.open("get", "http://example.com");
