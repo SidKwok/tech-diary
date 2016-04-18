@@ -79,6 +79,7 @@ Refresh：表示浏览器应该在多少时间之后刷新文档，以秒计。�
 </ul>
 <p>要说的东西其实不多，但是里面的原理如果要深度剖析的话，篇幅就不止这么一点了。</p>
 <p>还说一点点服务器推送的东西吧。之前实现服务器推送一般用的就是Comet。有两种方式，一种是长轮询，就是浏览器间隔一段时间就向服务器发请求，服务器如果有东西就进行响应。第二种方式是维护一个Http流，让这个流一直地保持连接，即使有响应也不断开，那么就可以实现实时的推送。而HTML5还提供了若干API来处理推送事件的，也就是SSE(服务器发送事件)，这些有空再聊吧。</p>
+<p>yo yo，我再说一点http和https的事情。http是在tcp之上的，然后如果在http与tcp之间添加一个安全协议层（ssl或tsl），那么就是所谓的https了。http的端口是80，https的端口是443。</p>
 <p><a href="http://blog.csdn.net/heiyeshuwu/article/details/7604538">深入理解HTTP协议</a></p>
 <p><a href="http://www.jdon.com/dl/http2.html">Http 2.0协议简介</a></p>
 </div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
