@@ -1,0 +1,85 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.0/styles/tomorrow.min.css"><link rel="stylesheet" href="../css/layout.css"></head><body><div class="content"><h1 id="es5-es6-">ES5转ES6总结</h1>
+<h2 id="2016-04-23">2016.04.23</h2>
+<p>最近好像有点把人品败光了。唉，不知道网易和daocloud那边什么情况，转运桃子我已经发过了，希望它能够给我带来一点运气。但是也不能荒废嘛，下面对ES5的一些用法转成ES6的，至于相关解释就不说了，因为会记住的，记不住就看一下书。不定期更新。</p>
+<p>上为ES5，下为ES6。</p>
+<h3 id="-">将数组转为函数参数</h3>
+<pre><code class="lang-Javascript">// ES5
+
+function f(x, y, z){}
+var args = [0, 1, 2];
+f.apply(null, args);
+</code></pre>
+<pre><code class="lang-Javascript">// ES6
+
+function f(x, y, z){}
+var args = [0, 1, 2];
+f(...args);
+</code></pre>
+<h3 id="-">参数默认值</h3>
+<pre><code class="lang-Javascript">// ES5
+
+function f(x, y){
+  y = y || &quot;world&quot;;
+}
+
+// 这样子有个缺点是没有办法检测false和&#39;&#39;等一系列转化之后为false的值
+</code></pre>
+<pre><code class="lang-Javascript">// ES6
+
+function f(x, y = &quot;world&quot;){};
+</code></pre>
+<h3 id="-">合并数组</h3>
+<pre><code class="lang-Javascript">// ES5
+
+var arr1 = [&#39;1&#39;, &#39;2&#39;];
+var arr2 = [&#39;3&#39;, &#39;4&#39;];
+var arr3 = [&#39;5&#39;, &#39;6&#39;];
+
+var arr4 = arr1.concat(arr2, arr3);
+</code></pre>
+<pre><code class="lang-Javascript">// ES6
+...
+
+var arr4 = [...arr1, ...arr2, ...arr3];
+</code></pre>
+<h3 id="-">将伪数组转化为真数组</h3>
+<pre><code class="lang-Javascript">// ES5
+
+function f(){
+  var arg = Array.prototype.apply(arguments);
+}
+</code></pre>
+<pre><code class="lang-Javascript">// ES6
+
+function f(){
+  var arg = [...arguments];
+}
+</code></pre>
+<h3 id="-">箭头函数</h3>
+<pre><code class="lang-Javascript">// ES5
+
+var f1 = function(a){
+  return a;
+}
+
+var f2 = function(){
+  return 5;
+}
+
+var f3 = function(){
+  return {a:1, b:2};
+}
+
+var f4 = function(a){
+  a++;
+  return a;
+}
+</code></pre>
+<pre><code class="lang-Javascript">// ES6
+
+var f1 = a =&gt; a;
+var f2 = () =&gt; 5;
+var f3 = () =&gt; ({a:1, b:2});
+var f4 = a =&gt; {a++;return a;};
+</code></pre>
+</div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
