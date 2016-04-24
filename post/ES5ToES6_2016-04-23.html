@@ -82,4 +82,17 @@ var f2 = () =&gt; 5;
 var f3 = () =&gt; ({a:1, b:2});
 var f4 = a =&gt; {a++;return a;};
 </code></pre>
+<h3 id="-">严格相等</h3>
+<pre><code class="lang-Javascript">// ES5
+
+a === &quot;a&quot;;
+</code></pre>
+<pre><code class="lang-Javascript">// ES6
+
+Object.is(a, &quot;a&quot;);
+
+// 不同之处只有两个
+// +0与-0相等
+// NaN等于自身
+</code></pre>
 </div><footer><address class="author">Copyright ©<a href="https://github.com/sidkwok">Sid</a></address></footer><script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
